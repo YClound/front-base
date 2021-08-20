@@ -66,14 +66,21 @@ app.use(function (req, res, next) {
 app.post('/api/upload', upload.single('file'), (req, res) => {
   console.log('req body', req.body);
   console.log('req file', req.file);
-  if (req.file.fieldname) {
-    res.send({
-      code: 0,
-      success: true,
-      msg: '请求成功',
-      data: {},
-    })
-  }
+  // if (req.file.fieldname) {
+  //   res.send({
+  //     code: 0,
+  //     success: true,
+  //     msg: '请求成功',
+  //     data: {},
+  //   })
+  // }
+
+  res.send({
+    code: 0,
+    success: true,
+    msg: '请求成功',
+    data: {},
+  })
 })
 
 // get请求

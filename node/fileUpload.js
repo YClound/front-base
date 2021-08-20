@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const request = require('request');
 const stream = fs.readFileSync(path.join(__dirname, './main.js'));
+
 request.post({
   url: 'http://localhost:9999/api/upload',
   formData: {

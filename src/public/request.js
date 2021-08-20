@@ -1,5 +1,5 @@
 const Axios = require('axios');
-const serverUrl = 'http://localhost:9999';
+const serverUrl = 'http://localhost:9999';  // node-project
 
 const instance = Axios.create({
   baseURL: serverUrl,
@@ -32,6 +32,8 @@ export const request = (options) => {
   if (headers["Content-Type"] === 'application/json') {
     params = { data: JSON.stringify(data) };
   }
+
+  console.log(headers, params)
 
   return instance.request({
     url: `/api${url}`,

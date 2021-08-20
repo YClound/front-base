@@ -1,22 +1,24 @@
 import { request } from '../public/request.js';
 import { saveAs } from 'file-saver';
+import axios from 'axios';
 
 window.onload = function () {
   const fileBtn = document.getElementById('file');
   fileBtn.addEventListener('change', (file) => {
     const fd = new FormData();
     fd.append('file', fileBtn.files[0]);
-    console.log(fileBtn.files[0], request)
-    request({
-      url: '/upload',
-      method: 'post',
-      data: fd,
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-    }).then(res => {
-      console.log(res)
-    })
+    console.log(fd.get('file'), '222222222', file, fileBtn.files[0])
+    axios.post('http://localhost:9999/api/upload', fd)
+    // request({
+    //   url: '/upload',
+    //   method: 'post',
+    //   data: {file: fileBtn.files[0]},
+    //   headers: {
+    //     "Content-Type": "multipart/form-data"
+    //   }
+    // }).then(res => {
+    //   console.log(res)
+    // })
   })
 
   const TestGet = document.getElementById('testGet');
