@@ -1,0 +1,77 @@
+.width-test {
+  width: 0;
+  display: inline-block;
+  outline: #333 2px solid;
+  color: #333;
+  align-items: center;
+  align-self: auto;
+
+  &::before {
+    content: '你love我';
+    color: #ffffff;
+    display: flex;
+  }
+}
+
+@clipPathHeight: calc(100% - 10px);
+
+.clip-path {
+  font-size: 14px;
+  line-height: 20px;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 10px 15px 20px;
+  background-color: #e4e4e4;
+  clip-path: polygon(0 0, 100% 0, 100% @clipPathHeight, 80% @clipPathHeight, 77% 100%, 70% @clipPathHeight, 0 @clipPathHeight);
+}
+
+/**
+  * @desc mask
+  * @link https://developer.mozilla.org/zh-CN/docs/Web/CSS/mask
+  * @link https://blog.csdn.net/qq_44607694/article/details/90551133
+*/
+.mask-content {
+  margin: 10px 0;
+  position: relative;
+  width: 500px;
+  height: 250px;
+  background: url(https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1877625006,2341162086&fm=26&gp=0.jpg) no-repeat;
+  background-size: cover;
+  // mask: linear-gradient(-90deg, transparent, #000);
+  // -webkit-mask: linear-gradient(-90deg, transparent, #000);
+  -webkit-mask-image: url('/images/icon-arrow-guide.png');
+  mask-image: url('/images/avatar.png');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+}
+
+.flex {
+  display: flex;
+
+  .flex1 {
+    flex: 1;
+  }
+}
+
+// position: sticky
+.stick-container {
+  height: 300px;
+  overflow-y: scroll;
+
+  .stick-content {
+    height: 1000px;
+    background-color: #e4e4e4;
+
+    .stick-nav {
+      position: sticky;
+      height: 50px;
+      background-color: green;
+      top: 0;
+
+      // z-index 改变显示层级
+      // &:nth-child(2) {
+      //   z-index: 10;
+      // }
+    }
+  }
+}

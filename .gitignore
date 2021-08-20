@@ -1,3 +1,9 @@
 .idea/
-node_modules/
-dist/
+/.DS_Store
+/node_modules
+/dist
+/dev
+/**/.DS_Store
+/upload
+/yarn.lock
+cases

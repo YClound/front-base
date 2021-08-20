@@ -1,0 +1,58 @@
+.width-test {
+  display: none;
+  width: 0;
+  display: inline-block;
+  outline: #333 2rpx solid;
+
+  &::before {
+    content: '你love我';
+    color: #ffffff;
+    display: flex;
+  }
+}
+
+.invitation-money {
+  display: none;
+  position: absolute;
+  border-radius: 30px;
+  border: #FF5030 1px solid;
+  font-size: 12px;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 6px;
+  left: 402px;
+  top: 0px;
+  color: #FF5030;
+  background-color: #fff;
+
+  .arrow {
+    position: absolute;
+    left: 20px;
+    bottom: -12px;
+    border: 6px #FF5030 solid;
+    border-color: #FF5030 transparent transparent #FF5030;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: -5px;
+      top: -6px;
+      border: 5px #fff solid;
+      border-color: #fff transparent transparent #fff;
+    }
+  }
+}
+
+input {
+  width: 300px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 16px;
+  border-radius: 4px;
+  box-shadow: none;
+  border: #e4e4e4 0.5px solid;
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}

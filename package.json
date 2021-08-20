@@ -1,34 +1,86 @@
 {
-  "name": "vuebase",
+  "name": "gulp-project",
   "version": "1.0.0",
-  "description": "vue的基本应用",
-  "main": "index.js",
+  "description": "a gulp build project ",
+  "main": "./dist/main.js",
+  "repository": "https://github.com/YClound/front-base",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --host 127.0.0.1 --port 3001 --open",
-    "prod": "webpack --progress --hide-modules"
+    "dev": "export NODE_ENV=dev && gulp start",
+    "build": "export NODE_ENV=production && gulp build",
+    "test:node": "node ./node/timer.js --time 5 --message 'Hello Tuture'",
+    "lint": "eslint ./src/**/*.js",
+    "server": "node ./node/server.js",
+    "report:test": "gulp report:test -t",
+    "report:task": "gulp report:test -tl"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/YClound/vue-base-use.git"
-  },
-  "keywords": [
-    "vue"
-  ],
-  "author": "guyanan",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/YClound/vue-base-use/issues"
-  },
-  "homepage": "https://github.com/YClound/vue-base-use#readme",
   "devDependencies": {
-    "browser-sync": "^2.18.13",
-    "css-loader": "^0.28.7",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "gulp": "^3.9.1",
-    "path": "^0.12.7",
-    "style-loader": "^0.19.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7"
+    "@babel/core": "^7.7.4",
+    "@babel/plugin-proposal-decorators": "^7.10.3",
+    "@babel/plugin-syntax-dynamic-import": "7.7.4",
+    "@babel/plugin-transform-modules-commonjs": "7.7.4",
+    "@babel/plugin-transform-regenerator": "7.7.4",
+    "@babel/plugin-transform-runtime": "7.7.4",
+    "@babel/preset-env": "7.7.4",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
+    "babel-preset-stage-2": "6.24.1",
+    "babelify": "10.0.0",
+    "browserify": "^16.5.0",
+    "chrome-launcher": "^0.13.4",
+    "commander": "^7.2.0",
+    "eslint": "^6.8.0",
+    "express": "^4.17.1",
+    "gulp": "4.0.2",
+    "gulp-autoprefixer": "7.0.1",
+    "gulp-babel": "8.0.0",
+    "gulp-clean": "0.4.0",
+    "gulp-connect": "5.7.0",
+    "gulp-cssmin": "0.2.0",
+    "gulp-highlight": "^2.1.0",
+    "gulp-htmlmin": "5.0.1",
+    "gulp-if": "3.0.0",
+    "gulp-imagemin": "6.2.0",
+    "gulp-less": "4.0.1",
+    "gulp-minify": "^3.1.0",
+    "gulp-sass": "4.0.2",
+    "gulp-sourcemaps": "2.6.5",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-uglify": "3.0.2",
+    "gulp-util": "3.0.8",
+    "http-proxy-middleware": "0.20.0",
+    "lighthouse": "^7.4.0",
+    "multer": "^1.4.2",
+    "node-sass": "^4.14.1",
+    "rxjs": "6.5.3",
+    "tsify": "4.0.1",
+    "typescript": "3.7.2",
+    "vinyl-buffer": "1.0.1",
+    "vinyl-named": "1.1.0",
+    "vinyl-source-stream": "2.0.0",
+    "watchify": "3.11.1",
+    "webpack-stream": "5.2.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "7.7.0",
+    "@yanan.g/publish-npm-test": "^1.0.1",
+    "axios": "^0.21.1",
+    "file-saver": "^2.0.2",
+    "fs": "0.0.1-security",
+    "gulp-header": "^2.0.9",
+    "gulp-markdown": "^6.0.0",
+    "md5": "^2.2.1",
+    "os": "^0.1.1",
+    "xlsx": "^0.16.9"
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "maintained node versions",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=12.13.0"
   }
 }

@@ -1,0 +1,49 @@
+@initStart: 8;
+@initEnd: 48;
+@between: 8;
+
+.paddingLoop(@paddingStart: @initStart, @paddingEnd: @initEnd) when(@paddingStart <=@paddingEnd) {
+  .padding-@{paddingStart} {
+    padding: "@{paddingStart}px";
+  }
+
+  .paddingLoop(@paddingStart + @between);
+}
+
+.paddingLoop-t(@paddingStart: @initStart, @paddingEnd: @initEnd) when(@paddingStart <=@paddingEnd) {
+  .pt-@{paddingStart} {
+    padding-top: "@{paddingStart}px";
+  }
+
+  .paddingLoop-t(@paddingStart + @between);
+}
+
+.paddingLoop-b(@paddingStart: @initStart, @paddingEnd: @initEnd) when(@paddingStart <=@paddingEnd) {
+  .pb-@{paddingStart} {
+    padding-bottom: "@{paddingStart}px";
+  }
+
+  .paddingLoop-b(@paddingStart + @between);
+}
+
+.paddingLoop-l(@paddingStart: @initStart, @paddingEnd: @initEnd) when(@paddingStart <=@paddingEnd) {
+  .pl-@{paddingStart} {
+    padding-left: "@{paddingStart}px";
+  }
+
+  .paddingLoop-l(@paddingStart + @between);
+}
+
+.paddingLoop-r(@paddingStart: @initStart, @paddingEnd: @initEnd) when(@paddingStart <=@paddingEnd) {
+  .pr-@{paddingStart} {
+    padding-right: "@{paddingStart}px";
+  }
+
+  .paddingLoop-r(@paddingStart + @between);
+}
+
+.paddingLoop(@initStart, @initEnd);
+.paddingLoop-t(@initStart, @initEnd);
+.paddingLoop-b(@initStart, @initEnd);
+.paddingLoop-l(@initStart, @initEnd);
+.paddingLoop-r(@initStart, @initEnd);
