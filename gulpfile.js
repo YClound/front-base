@@ -1,4 +1,5 @@
-const { series, src, dest, EventEmitter, watch } = require('gulp');
+const gulp = require('gulp');
+const { series, src, dest, EventEmitter, watch } = gulp;
 const ts = require("gulp-typescript");
 const tsCompile = ts.createProject('tsconfig.json');
 
@@ -19,12 +20,13 @@ const proxy = require('http-proxy-middleware');
 const markdown = require('gulp-markdown');
 const header = require('gulp-header');
 const highlight = require('gulp-highlight');
+const inject = require('gulp-inject');
 
 
 sass.compiler = require('node-sass');
 const env = process.env.NODE_ENV;
 console.log(process.env.NODE_ENV)
-const rootDir = env === 'production' ? './dist' : './dev';
+const rootDir = env === 'production' ? 'dist/' : 'dev/';
 const build = env === 'production' ? true : false;
 
 // 返回stream
@@ -45,11 +47,11 @@ function cssBuild() {
 
 function jsbuild() {
   return src('./src/**/*.js')
-    .pipe(named())
-    .pipe(webpackStream({ mode: "development" }))
+    // .pipe(named())
+    // .pipe(webpackStream({ mode: "development" }))
     .pipe(babel())
     .pipe(gulpIf(build, jsMinify({ noSource: true, ext: { min: '.js' } })))
-    .pipe(dest(rootDir + '/js'))
+    .pipe(dest(rootDir))
 }
 
 function tsBuild() {
@@ -61,6 +63,19 @@ function tsBuild() {
 
 function htmlBuild() {
   return src('./src/**/*.html')
+    .pipe(inject(gulp.src(['./src/utils/jquery.min.js', './src/css/common.less'], { read: false, allowEmpty: true }), {
+      transform: (filePath) => {
+        const filePath1 = filePath.substring(4);
+        console.log(filePath)
+        if (/.js$/.test(filePath)) {
+          return `<script src="${filePath1}"></script>`
+        }
+        if (/.less$/.test(filePath)) {
+          return `<link rel="stylesheet" href="${filePath1.substr(0, filePath1.length - 5)}.css"></link>`
+        }
+        return inject.transform.apply(inject.transform, arguments);
+      }
+    }))
     .pipe(gulpIf(build, htmlmin({ collapseWhitespace: true })))
     .pipe(dest(rootDir))
 }
@@ -81,7 +96,7 @@ function mdBuild() {
         }
       }
     }))
-    .pipe(highlight({ignoreSyntax: true, language: ['javascript']}))
+    .pipe(highlight({ ignoreSyntax: true, language: ['javascript'] }))
     .pipe(gulpIf(build, htmlmin({ collapseWhitespace: true })))
     .pipe(dest(`${rootDir}/doc`))
 }
@@ -110,7 +125,7 @@ function reloadPage() {
 
 function watchLive(cb) {
   watch('./src/**/*.js', { ignoreInitial: false }, jsbuild);
-  // watch('./src/**/*.ts', { ignoreInitial: false }, tsBuild);
+  watch('./src/**/*.ts', { ignoreInitial: false }, tsBuild);
   watch('./src/**/*.less', { ignoreInitial: false }, cssBuild);
   watch('./src/**/*.html', { ignoreInitial: false }, htmlBuild);
   watch('./src/images/*.*', { ignoreInitial: false }, imageBuild);

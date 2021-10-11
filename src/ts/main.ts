@@ -307,4 +307,4 @@ const objChoose = {
 
 // console.log(objChoose?.obj?.a?.b)
 
-console.log(SomeType.number)
+// console.log(SomeType.number)
