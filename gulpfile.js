@@ -66,7 +66,6 @@ function htmlBuild() {
     .pipe(inject(gulp.src(['./src/utils/jquery.min.js', './src/css/common.less'], { read: false, allowEmpty: true }), {
       transform: (filePath) => {
         const filePath1 = filePath.substring(4);
-        console.log(filePath)
         if (/.js$/.test(filePath)) {
           return `<script src="${filePath1}"></script>`
         }
@@ -82,7 +81,7 @@ function htmlBuild() {
 
 function imageBuild() {
   return src('./src/images/*.*')
-    .pipe(imagemin())
+    // .pipe(imagemin())
     .pipe(dest(`${rootDir}/images`))
 }
 
